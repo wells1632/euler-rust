@@ -1,7 +1,0 @@
-Functions in various source
-
-Checks for prime in 64 bit integer:
-e03/e03.rs:fn check_prime(n: i64) -> bool {
-
-Checks to see if a 32 bit integer is a palindrome:
-e04/e04.rs:fn check_palindrome(n: i32) -> bool {

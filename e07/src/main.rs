@@ -23,7 +23,7 @@ fn main() {
     let mut count = 0;
 
     while count < nth_prime {
-        if euler::check_prime(prime) {
+        if euler::check_prime_i64(prime) {
             count+=1;
         }
         prime+=1;
