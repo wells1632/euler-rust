@@ -11,5 +11,5 @@ dependencies = [
 
 [[package]]
 name = "euler"
-version = "0.1.0"
-source = "git+https://github.com/wells1632/euler-rust.git#9b09b4a38cce0050b17816fdb9f0820026b4959f"
+version = "0.2.0"
+source = "git+https://github.com/wells1632/euler-rust.git#0991b995a9ec38aa5fcee960cbb483cc0efb0ad5"
