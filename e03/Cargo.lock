@@ -5,3 +5,11 @@ version = 3
 [[package]]
 name = "e03"
 version = "0.1.0"
+dependencies = [
+ "euler",
+]
+
+[[package]]
+name = "euler"
+version = "0.2.0"
+source = "git+https://github.com/wells1632/euler-rust.git#e4733648fec8591414470e4b757038338bcc4ca8"
