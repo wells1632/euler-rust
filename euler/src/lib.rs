@@ -34,3 +34,17 @@ pub fn check_palindrome_i32(n: i32) -> bool {
         return false;
     }
 }
+
+pub fn get_factor_count_i32 (n:i32) -> i32 {
+    let mut factor_count = 0i32;
+    let nx = (n as f64).sqrt() as i32;
+    for i in 1..=nx  {
+        if n % i == 0 {
+            factor_count+=2;
+        }
+    }
+    if n==nx*nx {
+        factor_count-=1;
+    }
+    return factor_count;
+}
