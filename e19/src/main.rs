@@ -14,7 +14,10 @@ A leap year occurs on any year evenly divisible by 4, but not on a century unles
 How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
 */
 
+use std::time::Instant;
+
 fn main() {
+    let now = Instant::now();
     let mut months = vec![31,28,31,30,31,30,31,31,30,31,30,31];
     let mut day = 2;
     let mut year = 1901;
@@ -33,5 +36,6 @@ fn main() {
         }
         year += 1;
     }
-    println!("Sundays: {}", sunday);
+    let elapsed= now.elapsed();
+    println!("Sundays: {}\nElapsed: {:.2?}", sunday, elapsed);
 }
