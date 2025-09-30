@@ -48,3 +48,14 @@ pub fn get_factor_count_i32 (n:i32) -> i32 {
     }
     return factor_count;
 }
+
+pub fn get_factor_sum_i32 (n:i32) -> i32 {
+    let mut factor_sum = 0i32;
+    let nx = (n as f64).sqrt() as i32;
+    for i in 1..nx  {
+        if n % i == 0 {
+            factor_sum+=n;
+        }
+    }
+    return factor_sum;
+}
