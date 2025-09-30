@@ -54,7 +54,7 @@ pub fn get_factor_sum_i32 (n:i32) -> i32 {
     let nx = n/2;
     for i in 1..nx  {
         if n % i == 0 {
-            factor_sum+=n;
+            factor_sum+=i;
         }
     }
     return factor_sum;
