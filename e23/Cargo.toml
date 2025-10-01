@@ -6,3 +6,4 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+euler = { version = "0.5.3", git = "https://github.com/wells1632/euler-rust.git" }
