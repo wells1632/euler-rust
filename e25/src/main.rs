@@ -4,8 +4,16 @@ What is the index of the first term in the Fibonacci sequence to contain
  */
 
 use std::process;
+use std::time::Instant;
 
 fn main() {
+    /*
+    Let's first do this the brute force way. Rust cannot do a BigInt method
+    for this as it broke, so we have to go with a couple of vectors instead.
+     */
+
+    // Setup Timing
+    let mut now = Instant::now();
     /* 
     fib1 is our current sequence
     _fib2 is our last sequence
@@ -58,6 +66,21 @@ fn main() {
 	fib_index += 1;
     }
 
-    println!("{}", fib1.len());
-    println!("{}", fib_index);
+    println!("Brute Force Method:");
+    println!("Index of Fibonnacci of 1000 digits : {}", fib_index);
+    println!("Time to complete brute force method: {:.2?}", now.elapsed());
+    println!("");
+    // Now, we do this with the Binet formula
+
+    now = Instant::now();
+    let mut sqrt5: f32 = 5.0;
+    sqrt5 = sqrt5.sqrt();
+    let phi: f32 = (1.0 + sqrt5) / 2.0;
+    let result = (999.0 + sqrt5.log10()) / phi.log10();
+    println!("Binet's Formula:");
+    println!("Index of Fibonnacci of 1000 digits : {}", result.ceil());
+    println!("Time to complete brute force method: {:.2?}", now.elapsed());
+
+    
+
 }
