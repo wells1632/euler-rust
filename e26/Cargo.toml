@@ -4,4 +4,4 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-euler = { version = "0.3.0", git = "https://github.com/wells1632/euler-rust.git" }
+euler = { git = "https://github.com/wells1632/euler-rust.git" }

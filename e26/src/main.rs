@@ -24,16 +24,19 @@ use euler::check_prime_i32;
 fn main() {
     let mut max = 0;
     let mut max_p = 0;
-    for i in 2..1000 {
+    for i in 1..1000 {
+	let mut tmp = 0;
+	// Let's go ahead and check if it is prime first. No need to bother
+	// looking at the length if it isn't prime.
 	if check_prime_i32(i) {
-	    let tmp = cycle_length(i);
+	    tmp = cycle_length(i);
 	}
 	if max < tmp {
 	    max_p = i;
 	    max = tmp;
 	}
     }
-    println!("{}", max_p);
+    println!("Longest recurring cycle: {}", max_p);
 }
 
 fn cycle_length(n:i32) -> i32 {
@@ -41,9 +44,8 @@ fn cycle_length(n:i32) -> i32 {
     let mut t = 0;
     loop {
 	a = (a * 10.0) % n as f32;
-	println!("{}:{}", n, a);
 	t+=1;
-	if a as i32 == 1 {
+	if a as i32 <= 1 {
 	    break;
 	}
     }
