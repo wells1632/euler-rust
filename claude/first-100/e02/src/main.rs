@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let mut a = 1;
     let mut b = 2;
     let mut sum = 0;
@@ -14,4 +16,6 @@ fn main() {
     }
     
     println!("The sum of even Fibonacci terms up to 4 million is: {}", sum);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

@@ -1,5 +1,8 @@
+use std::time::Instant;
+
 fn main() {
     let mut largest_palindrome = 0;
+    let start = Instant::now();
     
     for i in (100..1000).rev() {
         for j in (i..1000).rev() {
@@ -16,9 +19,12 @@ fn main() {
     }
     
     println!("The largest palindrome from the product of two 3-digit numbers is: {}", largest_palindrome);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn is_palindrome(n: u32) -> bool {
     let s = n.to_string();
     s == s.chars().rev().collect::<String>()
 }
+

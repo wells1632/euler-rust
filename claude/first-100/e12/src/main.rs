@@ -1,10 +1,14 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let mut n = 1;
     let mut triangle = 1;
 
     loop {
 	if count_divisors(triangle) > 500 {
 	    println!("The first triangle number with over 500 divisors is: {}", triangle);
+	    let duration = start.elapsed();
+	    println!("Time elapsed: {:?}", duration);
 	    break;
 	}
 	n += 1;

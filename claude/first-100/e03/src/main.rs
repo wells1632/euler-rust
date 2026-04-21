@@ -1,7 +1,9 @@
+use std::time::Instant;
 fn main() {
     let number: u64 = 600851475143;
     let mut n = number;
     let mut largest_prime = 0;
+    let start = Instant::now();
     
     // Remove all factors of 2
     while n % 2 == 0 {
@@ -25,4 +27,6 @@ fn main() {
     }
     
     println!("The largest prime factor of {} is: {}", number, largest_prime);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

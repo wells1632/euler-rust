@@ -1,0 +1,89 @@
+fn count_digit_occurrences(n: i64, d: u8) -> i64 {
+    if n < 0 { return 0; }
+    let d = d as i64;
+    let mut count = 0i64;
+    let mut m = 1i64;
+
+    while m <= n {
+        let low = n % m;
+        let cur = (n / m) % 10;
+        let high = n / m / 10;
+
+        if cur < d {
+            count += high * m;
+        } else if cur == d {
+            count += high * m + low + 1;
+        } else {
+            count += (high + 1) * m;
+        }
+
+        if d == 0 {
+            count -= m;
+        }
+
+        m *= 10;
+    }
+
+    count
+}
+
+/// Find all n in [lo, hi] where f(n,d) == n
+fn find_fixed_points(d: u8, lo: i64, hi: i64, solutions: &mut Vec<i64>) {
+    if lo > hi { return; }
+
+    let f_lo = count_digit_occurrences(lo, d);
+    let f_hi = count_digit_occurrences(hi, d);
+
+    // f(n,d) is non-decreasing. 
+    // f(n,d) = n requires n to be in [f_lo, f_hi] intersected with [lo, hi].
+    // If f_lo > hi or f_hi < lo, no solutions possible.
+    if f_lo > hi || f_hi < lo {
+        return;
+    }
+
+    // If the interval is small enough, brute force
+    if hi - lo <= 1000 {
+        for n in lo..=hi {
+            if count_digit_occurrences(n, d) == n {
+                solutions.push(n);
+            }
+        }
+        return;
+    }
+
+    // Divide and conquer
+    let mid = lo + (hi - lo) / 2;
+    find_fixed_points(d, lo, mid, solutions);
+    find_fixed_points(d, mid + 1, hi, solutions);
+}
+
+fn main() {
+    // Verify test cases
+    println!("f(0,1)={}", count_digit_occurrences(0, 1));
+    println!("f(1,1)={}", count_digit_occurrences(1, 1));
+    println!("f(9,1)={}", count_digit_occurrences(9, 1));
+    println!("f(10,1)={}", count_digit_occurrences(10, 1));
+    println!("f(11,1)={}", count_digit_occurrences(11, 1));
+    println!("f(12,1)={}", count_digit_occurrences(12, 1));
+
+    // Verify s(1)
+    let mut sols_1: Vec<i64> = Vec::new();
+    find_fixed_points(1, 0, 10_000_000_000, &mut sols_1);
+    sols_1.sort();
+    let s1: i64 = sols_1.iter().sum();
+    println!("s(1) solutions: {:?}", &sols_1[..sols_1.len().min(10)]);
+    println!("s(1) = {} (expected 22786974071)", s1);
+
+    let mut total_sum: i64 = 0;
+
+    for d in 1u8..=9 {
+        let mut solutions: Vec<i64> = Vec::new();
+        find_fixed_points(d, 0, 10_000_000_000, &mut solutions);
+        solutions.sort();
+        let s: i64 = solutions.iter().sum();
+        println!("s({}) = {}  (solutions: {:?})", d, s, solutions);
+        total_sum += s;
+    }
+
+    println!("\nAnswer: sum of s(d) for d=1..=9 = {}", total_sum);
+}

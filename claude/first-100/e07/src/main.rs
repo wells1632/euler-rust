@@ -1,4 +1,7 @@
+use std::time::Instant;
+
 fn main() {
+    let start = Instant::now();
     let mut count = 0;
     let mut num = 2;
 
@@ -7,6 +10,8 @@ fn main() {
 	    count += 1;
 	    if count == 10_001 {
 		println!("The 10,001st prime number is: {}", num);
+		let duration = start.elapsed();
+		println!("Time elapsed: {:?}", duration);
 		break;
 	    }
 	}

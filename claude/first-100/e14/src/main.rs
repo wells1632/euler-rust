@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let mut max_length = 0;
     let mut number_with_max = 0;
 
@@ -12,6 +14,8 @@ fn main() {
 
     println!("Starting number with longest chain: {}", number_with_max);
     println!("Chain length: {}", max_length);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn collatz_length(mut n: u64) -> u64 {

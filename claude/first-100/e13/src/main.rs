@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let numbers = vec![
 	"37107287533902102798797998220837590246510135740250",
 	"46376937677490009712648124896970078050417018260538",
@@ -114,4 +116,6 @@ fn main() {
     let first_ten = &result[..10];
 
     println!("The first ten digits of the sum are: {}", first_ten);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

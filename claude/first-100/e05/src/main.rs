@@ -1,7 +1,12 @@
+use std::time::Instant;
+
 fn main() {
+    let start = Instant::now();
     let result = (1..=20).fold(1, |acc, n| lcm(acc, n));
     
     println!("The smallest number evenly divisible by all numbers from 1 to 20 is: {}", result);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn gcd(mut a: u64, mut b: u64) -> u64 {

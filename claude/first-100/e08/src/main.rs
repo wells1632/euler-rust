@@ -1,4 +1,7 @@
+use std::time::Instant;
+
 fn main() {
+    let start = Instant::now();
     let number = "\
     73167176531330624919225119674426574742355349194934\
     96983520312774506326239578318016984801869478851843\
@@ -33,4 +36,6 @@ fn main() {
     }
 
     println!("The greatest product of thirteen adjacent digits is: {}", max_product);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

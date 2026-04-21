@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let mut digits = vec![1]; // Start with 2^0 = 1
 
     // Multiply by 2 a thousand times
@@ -21,4 +23,6 @@ fn main() {
 
     println!("2^1000 has {} digits", digits.len());
     println!("Sum of digits: {}", sum);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

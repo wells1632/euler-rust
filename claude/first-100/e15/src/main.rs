@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let grid_size = 20;
 
     // This is a combinatorial problem: C(40, 20)
@@ -8,6 +10,8 @@ fn main() {
     let result = binomial_coefficient(grid_size * 2, grid_size);
 
     println!("Number of unique routes through a {}x{} grid: {}", grid_size, grid_size, result);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn binomial_coefficient(n: u64, k: u64) -> u64 {

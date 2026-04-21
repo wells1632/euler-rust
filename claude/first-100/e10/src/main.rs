@@ -1,8 +1,13 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let limit = 2_000_000;
     let sum: u64 = sieve_of_eratosthenes(limit).iter().sum();
 
     println!("The sum of all primes below {} is: {}", limit, sum);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
+    
 }
 
 fn sieve_of_eratosthenes(limit: usize) -> Vec<u64> {

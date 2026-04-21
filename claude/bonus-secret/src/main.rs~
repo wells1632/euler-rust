@@ -1,0 +1,147 @@
+use std::ops::{Add, Mul};
+
+const W: usize = 10;
+const H: usize = 6;
+const N: usize = W * H; // 60
+const MOD: u64 = 7;
+
+type Matrix = [[u64; N]; N];
+
+fn mat_mul(a: &Matrix, b: &Matrix) -> Matrix {
+    let mut c = [[0u64; N]; N];
+    for i in 0..N {
+        for k in 0..N {
+            if a[i][k] == 0 { continue; }
+            for j in 0..N {
+                c[i][j] = (c[i][j] + a[i][k] * b[k][j]) % MOD;
+            }
+        }
+    }
+    c
+}
+
+fn mat_pow(mut base: Matrix, mut exp: u64) -> Matrix {
+    let mut result = identity();
+    while exp > 0 {
+        if exp & 1 == 1 {
+            result = mat_mul(&result, &base);
+        }
+        base = mat_mul(&base, &base);
+        exp >>= 1;
+    }
+    result
+}
+
+fn identity() -> Matrix {
+    let mut m = [[0u64; N]; N];
+    for i in 0..N { m[i][i] = 1; }
+    m
+}
+
+fn idx(col: usize, row: usize) -> usize {
+    // col: 0..W, row: 0..H
+    row * W + col
+}
+
+fn build_transition() -> Matrix {
+    let mut m = [[0u64; N]; N];
+    for r in 0..H {
+        for c in 0..W {
+            let i = idx(c, r);
+            let neighbors = [
+                idx((c + 1) % W, r),
+                idx((c + W - 1) % W, r),
+                idx(c, (r + 1) % H),
+                idx(c, (r + H - 1) % H),
+            ];
+            for &j in &neighbors {
+                m[i][j] = (m[i][j] + 1) % MOD;
+            }
+        }
+    }
+    m
+}
+
+fn main() {
+    // Initial grid, 1-indexed (col, row) -> 0-indexed
+    // Values given as letters; decode using their mod-7 representations
+    // a=1,b=2,c=3,d=4,e=5 (lowercase); A=1,B=2,C=3,D=4,E=5 (uppercase)?
+    // Actually we just need initial integer values — the table maps letters to values.
+    // Based on typical puzzles: a=1,b=2,c=3,d=4,e=5,A=6,B=5,C=4,D=3,E=2? 
+    // Most likely: a..e = 1..5, A..E = some values. Let's assume ASCII or simple mapping.
+    // Standard mapping: a=1,b=2,c=3,d=4,e=5; A=1,B=2,C=3,D=4,E=5 (same values, different case for decode direction)
+    
+    let mut grid = [0u64; N];
+    // (col, row) 1-indexed -> subtract 1
+    // Using a=1,b=2,c=3,d=4,e=5,A=1,B=2,C=3,D=4,E=5
+    let init: &[(usize, usize, u64)] = &[
+        (10,1, 4), // d
+        (1,2,  2), // B
+        (1,3,  1), // A
+        (2,3,  5), // E
+        (2,10, 3), // C — wait, col=2 row=10? but H=6...
+        // Likely (row, col) not (col, row)!
+    ];
+    // Re-interpreting as (row, col):
+    // Let me redo with (row, col) interpretation
+    let init2: &[(usize, usize, u64)] = &[
+        (1,10, 4), // (row=1,col=10): d=4
+        (2,1,  2), // B=2
+        (3,1,  1), // A=1
+        (3,2,  5), // E=5
+        (10,2, 3), // row=10? Still out of range for H=6
+    ];
+    // row=10 is impossible with H=6. Must be (col,row) and "2,10" means col=2,row=10 -> invalid
+    // OR the grid is described as 6 across and 10 down (re-read: "10 across and 6 down")
+    // So W=10, H=6. (col,row): col 1..10, row 1..6
+    // (2,10) has row=10 > 6 — impossible unless it's (row,col) with grid 6 wide 10 tall
+    // Re-read: "10 across and 6 down" -> 10 columns, 6 rows
+    // But (2,10) as (col,row) is invalid. So maybe it IS (row, col)?
+    // With (row,col): rows 1..6 cols 1..10 -> (2,10) valid! row=2,col=10
+    
+    // Final interpretation: (row, col), 1-indexed
+    let assignments: &[(usize, usize, u64)] = &[
+        (1,10, 4), // d=4
+        (2,1,  2), // B=2
+        (3,1,  1), // A=1
+        (3,2,  5), // E=5
+        (2,10, 3), // C=3  -- but this conflicts with (1,10,4) if same index... 
+        // wait (1,10): row=1,col=10 and (2,10): row=2,col=10 -> different rows, fine
+        (4,1,  4), // D=4
+        (5,10, 2), // b=2
+        (6,1,  5), // e=5
+        (6,9,  3), // c=3
+        (6,10, 1), // a=1
+    ];
+    
+    for &(r, c, v) in assignments {
+        grid[idx(c-1, r-1)] = v % MOD;
+    }
+
+    let trans = build_transition();
+    let trans_pow = mat_pow(trans, 1_000_000_000_000u64);
+    
+    let mut result = [0u64; N];
+    for i in 0..N {
+        for j in 0..N {
+            result[i] = (result[i] + trans_pow[i][j] * grid[j]) % MOD;
+        }
+    }
+    
+    // Print grid
+    for r in 0..H {
+        for c in 0..W {
+            print!("{}", result[idx(c, r)]);
+        }
+        println!();
+    }
+    
+    // Decode: map nonzero values to letters
+    // Rows left-to-right, read nonzero values as word
+    let decode = ['a','b','c','d','e','f']; // 1-6
+    let word: String = result.iter()
+        .filter(|&&v| v != 0)
+        .map(|&v| (b'A' + (v as u8 - 1)) as char)
+        .collect();
+    println!("Decoded: {}", word);
+}
