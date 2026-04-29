@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let mut digits = vec![1]; // Start with 1! = 1
 
     // Multiply by each number from 2 to 100
@@ -21,4 +23,6 @@ fn main() {
 
     println!("100! has {} digits", digits.len());
     println!("Sum of digits in 100!: {}", sum);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

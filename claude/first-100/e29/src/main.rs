@@ -1,9 +1,13 @@
+use std::time::Instant;
 use num_bigint::BigUint;
 use std::collections::HashSet;
 
 fn main() {
+    let start = Instant::now();
     let distinct_count = count_distinct_powers(100);
     println!("Number of distinct terms: {}", distinct_count);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn count_distinct_powers(max: u32) -> usize {

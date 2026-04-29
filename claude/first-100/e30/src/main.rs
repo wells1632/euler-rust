@@ -1,6 +1,10 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let sum = find_sum_of_fifth_power_numbers();
     println!("Sum of all numbers equal to sum of fifth powers of their digits: {}", sum);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn find_sum_of_fifth_power_numbers() -> u32 {

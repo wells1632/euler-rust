@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let mut total_letters = 0;
 
     for n in 1..=1000 {
@@ -6,6 +8,8 @@ fn main() {
     }
 
     println!("Total letters used: {}", total_letters);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn number_to_words(n: u32) -> String {

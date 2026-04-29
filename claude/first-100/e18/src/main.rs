@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let triangle = vec![
 	vec![75],
 	vec![95, 64],
@@ -27,4 +29,6 @@ fn main() {
     }
 
     println!("Maximum total from top to bottom: {}", dp[0][0]);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

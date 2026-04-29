@@ -1,7 +1,9 @@
+use std::time::Instant;
 use num_bigint::BigUint;
 use num_traits::{Zero, One};
 
 fn main() {
+    let start = Instant::now();
     let mut a = BigUint::zero();
     let mut b = BigUint::one();
     let mut index = 1;
@@ -15,6 +17,8 @@ fn main() {
 	// Check if we've reached 1000 digits
 	if b.to_string().len() >= 1000 {
 	    println!("The first Fibonacci term with 1000 digits is at index: {}", index);
+	    let duration = start.elapsed();
+	    println!("Time elapsed: {:?}", duration);
 	    break;
 	}
     }

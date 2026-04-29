@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn find_cycle_length(d: usize) -> usize {
     // Remove factors of 2 and 5 (they don't contribute to cycles)
     let mut d_reduced = d;
@@ -33,6 +34,7 @@ fn find_cycle_length(d: usize) -> usize {
 }
 
 fn main() {
+    let start = Instant::now();
     let mut max_cycle = 0;
     let mut best_d = 0;
 
@@ -46,4 +48,6 @@ fn main() {
 
     println!("d with longest cycle: {}", best_d);
     println!("Cycle length: {}", max_cycle);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

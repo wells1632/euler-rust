@@ -1,21 +1,23 @@
-fn factorial(n: u32) -> u32 {
+use std::time::Instant;
+fn _factorial(n: u32) -> u32 {
     match n {
 	0 | 1 => 1,
-	_ => n * factorial(n - 1)
+	_ => n * _factorial(n - 1)
     }
 }
 
-fn sum_of_digit_factorials(mut num: u32) -> u32 {
+fn _sum_of_digit_factorials(mut num: u32) -> u32 {
     let mut sum = 0;
     while num > 0 {
 	let digit = num % 10;
-	sum += factorial(digit);
+	sum += _factorial(digit);
 	num /= 10;
     }
     sum
 }
 
 fn main() {
+    let start = Instant::now();
     // Precompute factorials for digits 0-9 for efficiency
     let factorials: [u32; 10] = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880];
 
@@ -47,4 +49,6 @@ fn main() {
     }
 
     println!("\nSum of all such numbers: {}", total_sum);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

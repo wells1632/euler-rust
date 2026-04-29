@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn count_ways(amount: u32, coins: &[u32], index: usize) -> u64 {
     // Base cases
     if amount == 0 {
@@ -19,10 +20,13 @@ fn count_ways(amount: u32, coins: &[u32], index: usize) -> u64 {
 }
 
 fn main() {
+    let start = Instant::now();
     // UK coins in pence: 1p, 2p, 5p, 10p, 20p, 50p, £1 (100p), £2 (200p)
     let coins = vec![1, 2, 5, 10, 20, 50, 100, 200];
     let amount = 200; // 2 pounds = 200 pence
 
     let ways = count_ways(amount, &coins, 0);
     println!("Number of ways to make £2: {}", ways);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

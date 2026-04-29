@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let mut sundays = 0;
 
     // Start from January 1, 1901
@@ -19,6 +21,8 @@ fn main() {
     }
 
     println!("Number of Sundays on the 1st of the month (1901-2000): {}", sundays);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn get_days_in_month(month: u32, year: u32) -> u32 {

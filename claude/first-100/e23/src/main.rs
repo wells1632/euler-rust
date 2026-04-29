@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     const LIMIT: usize = 28123; // All integers greater than 28123 can be written as sum of two abundant numbers
 
     // Find all abundant numbers up to LIMIT
@@ -31,6 +33,8 @@ fn main() {
     }
 
     println!("Sum of all positive integers that cannot be written as sum of two abundant numbers: {}", total);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn sum_of_divisors(n: usize) -> usize {

@@ -1,7 +1,9 @@
+use std::time::Instant;
 use std::env;
 use std::fs;
 
 fn main() {
+    let start = Instant::now();
     let args: Vec<String> = env::args().collect();
 
     if args.len() < 2 {
@@ -35,6 +37,8 @@ fn main() {
     }
 
     println!("Total of all name scores: {}", total_score);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn calculate_name_value(name: &str) -> u64 {

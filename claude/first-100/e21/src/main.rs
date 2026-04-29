@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let mut sum = 0;
 
     for a in 2..10000 {
@@ -11,6 +13,8 @@ fn main() {
     }
 
     println!("Sum of all amicable numbers under 10000: {}", sum);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn sum_of_divisors(n: u32) -> u32 {

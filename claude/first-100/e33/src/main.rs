@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn gcd(a: u32, b: u32) -> u32 {
     if b == 0 {
 	a
@@ -7,6 +8,7 @@ fn gcd(a: u32, b: u32) -> u32 {
 }
 
 fn main() {
+    let start = Instant::now();
     let mut valid_fractions = Vec::new();
 
     // Check all two-digit fractions
@@ -81,5 +83,7 @@ fn main() {
 
     println!("Reduced: {}/{}", reduced_num, reduced_den);
     println!("Denominator: {}", reduced_den);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 

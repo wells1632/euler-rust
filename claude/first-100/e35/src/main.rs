@@ -1,9 +1,13 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let limit = 1_000_000;
     let primes = sieve_of_eratosthenes(limit);
     let circular_primes = count_circular_primes(&primes, limit);
 
     println!("Number of circular primes below {}: {}", limit, circular_primes);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn sieve_of_eratosthenes(limit: usize) -> Vec<bool> {

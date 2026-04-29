@@ -1,6 +1,7 @@
+use std::time::Instant;
 use std::collections::HashSet;
 
-fn digits_to_set(mut n: u32) -> HashSet<u32> {
+fn _digits_to_set(mut n: u32) -> HashSet<u32> {
     let mut digits = HashSet::new();
     while n > 0 {
 	digits.insert(n % 10);
@@ -10,7 +11,7 @@ fn digits_to_set(mut n: u32) -> HashSet<u32> {
 }
 
 fn is_pandigital(a: u32, b: u32, product: u32) -> bool {
-    let mut combined = format!("{}{}{}", a, b, product);
+    let combined = format!("{}{}{}", a, b, product);
 
     // Must be exactly 9 digits
     if combined.len() != 9 {
@@ -23,6 +24,7 @@ fn is_pandigital(a: u32, b: u32, product: u32) -> bool {
 }
 
 fn main() {
+    let start = Instant::now();
     let mut products = HashSet::new();
 
     // We need a * b = c where digits of a, b, c form a pandigital
@@ -57,4 +59,6 @@ fn main() {
 
     let sum: u32 = products.iter().sum();
     println!("\nSum of all unique products: {}", sum);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

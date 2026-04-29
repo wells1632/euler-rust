@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn is_prime(n: i32) -> bool {
     if n < 2 {
 	return false;
@@ -30,6 +31,7 @@ fn count_consecutive_primes(a: i32, b: i32) -> i32 {
 }
 
 fn main() {
+    let start = Instant::now();
     let mut max_count = 0;
     let mut best_a = 0;
     let mut best_b = 0;
@@ -49,4 +51,6 @@ fn main() {
     println!("Best b: {}", best_b);
     println!("Consecutive primes: {}", max_count);
     println!("Product a * b: {}", best_a * best_b);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

@@ -1,7 +1,11 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let size = 1001;
     let sum = calculate_diagonal_sum(size);
     println!("Sum of diagonals for {}x{} spiral: {}", size, size, sum);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn calculate_diagonal_sum(size: usize) -> u64 {
