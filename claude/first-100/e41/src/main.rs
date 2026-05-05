@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn is_prime(n: u64) -> bool {
     if n < 2 { return false; }
     if n == 2 { return true; }
@@ -74,6 +75,7 @@ fn find_largest_pandigital_prime() -> Option<u64> {
 }
 
 fn main() {
+    let start = Instant::now();
     match find_largest_pandigital_prime() {
 	Some(prime) => {
 	    println!("Largest pandigital prime: {}", prime);
@@ -82,4 +84,6 @@ fn main() {
 	}
 	None => println!("No pandigital prime found"),
     }
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

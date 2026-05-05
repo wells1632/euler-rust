@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn is_pandigital_9(n: u32) -> bool {
     let s = n.to_string();
     if s.len() != 9 {
@@ -52,6 +53,9 @@ fn find_largest_pandigital() -> u32 {
 }
 
 fn main() {
+    let start = Instant::now();
     let result = find_largest_pandigital();
     println!("Largest 9-digit pandigital concatenated product: {}", result);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn is_prime(n: u32) -> bool {
     if n < 2 {
 	return false;
@@ -45,6 +46,7 @@ fn is_truncatable_prime(n: u32) -> bool {
 }
 
 fn main() {
+    let start = Instant::now();
     let mut truncatable_primes = Vec::new();
     let mut n = 11; // Start from 11 (first two-digit prime)
 
@@ -60,4 +62,6 @@ fn main() {
 
     println!("Truncatable primes: {:?}", truncatable_primes);
     println!("Sum of truncatable primes: {}", sum);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

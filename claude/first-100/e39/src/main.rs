@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::collections::HashMap;
 
 fn gcd(a: u32, b: u32) -> u32 {
@@ -49,6 +50,7 @@ fn find_perimeter_with_max_solutions() -> (u32, u32, Vec<(u32, u32, u32)>) {
 }
 
 fn main() {
+    let start = Instant::now();
     let (perimeter, count, solutions) = find_perimeter_with_max_solutions();
 
     println!("Perimeter with maximum number of right triangle solutions: {}", perimeter);
@@ -59,4 +61,6 @@ fn main() {
 	println!("  {}: ({}, {}, {}) - verification: {}² + {}² = {}, {}² = {}",
 		 i + 1, a, b, c, a, b, a*a + b*b, c, c*c);
     }
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

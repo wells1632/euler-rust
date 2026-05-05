@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn get_digit_at_position(position: usize) -> u32 {
     let mut current_pos = 0;
     let mut num = 1;
@@ -18,6 +19,7 @@ fn get_digit_at_position(position: usize) -> u32 {
 }
 
 fn main() {
+    let start = Instant::now();
     let positions = [1, 10, 100, 1000, 10000, 100000, 1000000];
     let mut digits = Vec::new();
 
@@ -30,4 +32,6 @@ fn main() {
 
     let product: u32 = digits.iter().product();
     println!("\nProduct of all digits: {}", product);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

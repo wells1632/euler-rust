@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn generate_pandigital_permutations() -> Vec<String> {
     let mut digits = vec!['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     let mut permutations = Vec::new();
@@ -40,6 +41,7 @@ fn check_divisibility_property(number: &str) -> bool {
 }
 
 fn main() {
+    let start = Instant::now();
     println!("Searching for pandigital numbers with special divisibility property...");
 
     let permutations = generate_pandigital_permutations();
@@ -71,4 +73,6 @@ fn main() {
 	println!("Total valid numbers found: {}", valid_numbers.len());
 	println!("Sum of all valid numbers: {}", sum);
     }
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

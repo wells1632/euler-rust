@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let mut sum = 0u64;
     let mut palindromes = Vec::new();
 
@@ -12,6 +14,8 @@ fn main() {
 
     println!("Double palindromes found: {:?}", palindromes);
     println!("Sum of all double palindromes: {}", sum);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn is_decimal_palindrome(n: u32) -> bool {
