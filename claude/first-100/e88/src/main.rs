@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::collections::HashSet;
 
 fn find_factorizations(
@@ -39,6 +40,7 @@ fn find_factorizations(
 }
 
 fn main() {
+    let start = Instant::now();
     let k_limit = 12_000;
     
     // Use a vector instead of HashMap for faster access
@@ -98,4 +100,7 @@ fn main() {
                      value, k_list.len(), &k_list[..5]);
         }
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

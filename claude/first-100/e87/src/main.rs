@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::collections::HashSet;
 
 fn sieve_of_eratosthenes(limit: usize) -> Vec<usize> {
@@ -21,6 +22,7 @@ fn sieve_of_eratosthenes(limit: usize) -> Vec<usize> {
 }
 
 fn main() {
+    let start = Instant::now();
     let limit = 50_000_000u64;
     
     // Find the maximum prime we need
@@ -74,4 +76,7 @@ fn main() {
     
     println!("\nAnswer: {} numbers below {} can be expressed as p² + q³ + r⁴", 
              valid_numbers.len(), limit);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

@@ -1,7 +1,12 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let max_coord = 50;
     let count = count_right_triangles(max_coord);
     println!("Number of right triangles with coordinates 0-{}: {}", max_coord, count);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn count_right_triangles(max: i32) -> usize {

@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::env;
@@ -59,6 +60,7 @@ fn decimal_to_minimal_roman(mut num: i32) -> String {
 }
 
 fn main() {
+    let start = Instant::now();
     // Get filename from command line or use default
     let args: Vec<String> = env::args().collect();
     let filename = if args.len() > 1 {
@@ -115,4 +117,7 @@ fn main() {
                      original, original.len(), minimal, minimal.len(), savings);
         }
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

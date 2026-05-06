@@ -1,8 +1,10 @@
+use std::time::Instant;
 fn count_rectangles(m: i64, n: i64) -> i64 {
     (m * (m + 1) / 2) * (n * (n + 1) / 2)
 }
 
 fn main() {
+    let start = Instant::now();
     let target = 2_000_000;
     let mut best_diff = i64::MAX;
     let mut best_m = 0;
@@ -32,4 +34,7 @@ fn main() {
     println!("Rectangles: {}", best_count);
     println!("Difference: {}", best_diff);
     println!("Area: {}", best_m * best_n);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

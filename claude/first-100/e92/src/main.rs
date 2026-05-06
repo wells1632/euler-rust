@@ -1,10 +1,15 @@
+use std::time::Instant;
 use std::collections::HashMap;
 
 fn main() {
+    let start = Instant::now();
     let limit = 10_000_000;
     let mut cache = HashMap::new();
     let count = count_numbers_reaching_89(limit, &mut cache);
     println!("Numbers below {} that reach 89: {}", limit, count);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn sum_of_squared_digits(mut n: u32) -> u32 {

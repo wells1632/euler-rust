@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::collections::HashSet;
 
 fn generate_cube_combinations() -> Vec<Vec<u8>> {
@@ -45,6 +46,7 @@ fn can_display_all_squares(cube1: &[u8], cube2: &[u8]) -> bool {
 }
 
 fn main() {
+    let start = Instant::now();
     let cubes = generate_cube_combinations();
     let mut count = 0;
     
@@ -60,4 +62,7 @@ fn main() {
     }
     
     println!("Number of distinct arrangements: {}", count);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

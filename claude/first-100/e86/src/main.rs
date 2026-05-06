@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::collections::HashSet;
 use std::collections::HashMap;
 
@@ -109,6 +110,10 @@ fn solve(target: usize) -> usize {
 }
 
 fn main() {
+    let start = Instant::now();
     println!("{}", solve(1_000_000));
 
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
