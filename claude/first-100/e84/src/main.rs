@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::collections::HashMap;
 use rand::Rng;
 
@@ -22,6 +23,7 @@ impl Deck {
 }
 
 fn main() {
+    let start = Instant::now();
     let mut rng = rand::thread_rng();
     let mut landing_counts = HashMap::new();
     
@@ -77,6 +79,9 @@ fn main() {
     let modal_string = format!("{:02}{:02}{:02}", 
                                squares[0].0, squares[1].0, squares[2].0);
     println!("\nModal string (top 3 squares): {}", modal_string);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn process_square(mut pos: usize, chance: &mut Deck, cc: &mut Deck) -> usize {

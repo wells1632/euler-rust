@@ -1,3 +1,4 @@
+use std::time::Instant;
 use num_bigint::BigUint;
 
 fn digital_sum(n: &BigUint) -> u32 {
@@ -8,6 +9,7 @@ fn digital_sum(n: &BigUint) -> u32 {
 }
 
 fn main() {
+    let start = Instant::now();
     let mut max_sum = 0;
     let mut max_a = 0u32;
     let mut max_b = 0u32;
@@ -37,4 +39,7 @@ fn main() {
     println!("99^95 = {}", result);
     println!();
     println!("Verification - Sum of digits: {}", verification);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

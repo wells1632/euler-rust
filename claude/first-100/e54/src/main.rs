@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::collections::HashMap;
 use std::env;
 use std::fs;
@@ -133,6 +134,7 @@ fn evaluate_hand(cards: &[Card]) -> HandRank {
 }
 
 fn main() {
+    let start = Instant::now();
     let args: Vec<String> = env::args().collect();
     
     if args.len() < 2 {
@@ -210,4 +212,7 @@ fn main() {
              (player2_wins as f64 / total_hands as f64) * 100.0);
     println!("Ties: {} ({:.1}%)", ties,
              (ties as f64 / total_hands as f64) * 100.0);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

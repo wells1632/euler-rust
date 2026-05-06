@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn binomial_coefficient(n: u128, r: u128) -> u128 {
     if r > n {
         return 0;
@@ -18,6 +19,7 @@ fn binomial_coefficient(n: u128, r: u128) -> u128 {
 }
 
 fn main() {
+    let start = Instant::now();
     let mut count = 0;
     let threshold = 1_000_000u128;
     
@@ -31,4 +33,7 @@ fn main() {
     }
     
     println!("Number of binomial coefficients C(n,r) with 1≤n≤100 that exceed 1,000,000: {}", count);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

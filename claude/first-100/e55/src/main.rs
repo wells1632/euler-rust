@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::str::FromStr;
 
 fn reverse_number(n: u128) -> u128 {
@@ -27,6 +28,7 @@ fn is_lychrel(n: u128, max_iterations: usize) -> bool {
 }
 
 fn main() {
+    let start = Instant::now();
     let limit = 10_000;
     let max_iterations = 50;
     let mut lychrel_numbers = Vec::new();
@@ -40,4 +42,7 @@ fn main() {
     println!("Lychrel numbers below {}:", limit);
     println!("{:?}", lychrel_numbers);
     println!("\nTotal count: {}", lychrel_numbers.len());
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

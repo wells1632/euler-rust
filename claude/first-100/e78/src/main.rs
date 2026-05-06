@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let modulo = 1_000_000;
     let limit = 100000; // Should be enough
     
@@ -35,9 +37,12 @@ fn main() {
         
         if p[n] == 0 {
             println!("Least value of n where p(n) is divisible by {}: {}", modulo, n);
+	    let duration = start.elapsed();
+	    println!("Time elapsed: {:?}", duration);
             return;
         }
     }
     
     println!("Need to increase limit!");
+
 }

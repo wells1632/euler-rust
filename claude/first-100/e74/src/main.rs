@@ -1,6 +1,8 @@
+use std::time::Instant;
 use std::collections::{HashMap, HashSet};
 
 fn main() {
+    let start = Instant::now();
     let limit = 1_000_000;
     let target_length = 60;
     
@@ -20,6 +22,9 @@ fn main() {
     }
     
     println!("Number of chains with exactly {} non-repeating terms: {}", target_length, count);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn chain_length(start: u64, factorials: &[u64; 10], cache: &mut HashMap<u64, usize>) -> usize {

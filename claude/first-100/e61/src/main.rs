@@ -1,6 +1,8 @@
+use std::time::Instant;
 use std::collections::HashMap;
 
 fn main() {
+    let start = Instant::now();
     // Generate all 4-digit polygonal numbers for each type
     let triangle = generate_polygonal(3, |n| n * (n + 1) / 2);
     let square = generate_polygonal(4, |n| n * n);
@@ -40,9 +42,12 @@ fn main() {
                 sum += num;
             }
             println!("\nSum: {}", sum);
+	    let duration = start.elapsed();
+	    println!("Time elapsed: {:?}", duration);
             return;
         }
     }
+
 }
 
 fn generate_polygonal<F>(type_id: usize, formula: F) -> HashMap<u32, Vec<u32>>

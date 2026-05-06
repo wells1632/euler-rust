@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let limit = 1_000_000;
     let primes = sieve_of_eratosthenes(limit);
 
@@ -32,6 +34,8 @@ fn main() {
 
     println!("Prime: {}", best_prime);
     println!("Consecutive primes: {}", max_length);
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn sieve_of_eratosthenes(limit: usize) -> Vec<usize> {
@@ -53,4 +57,5 @@ fn sieve_of_eratosthenes(limit: usize) -> Vec<usize> {
 	.enumerate()
 	.filter_map(|(num, &prime)| if prime { Some(num) } else { None })
 	.collect()
+
 }

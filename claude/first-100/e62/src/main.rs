@@ -1,6 +1,8 @@
+use std::time::Instant;
 use std::collections::HashMap;
 
 fn main() {
+    let start = Instant::now();
     let mut digit_groups: HashMap<String, Vec<u64>> = HashMap::new();
     
     // Generate cubes and group them by sorted digits
@@ -25,6 +27,8 @@ fn main() {
                 
                 println!("Found exactly 5 permutations!");
                 println!("The smallest cube is: {}", cubes_sorted[0]);
+		let duration = start.elapsed();
+		println!("Time elapsed: {:?}", duration);
                 println!("\nAll five cubes:");
                 for &cube in &cubes_sorted {
                     let cube_root = (cube as f64).cbrt().round() as u64;
@@ -43,6 +47,7 @@ fn main() {
     }
     
     println!("No solution found in the range checked.");
+
 }
 
 fn sort_digits(mut num: u64) -> String {

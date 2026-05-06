@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let limit = 12000;
     let mut count = 0;
     
@@ -18,6 +20,9 @@ fn main() {
     }
     
     println!("Number of reduced proper fractions between 1/3 and 1/2 for d <= {}: {}", limit, count);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn gcd(mut a: u64, mut b: u64) -> u64 {

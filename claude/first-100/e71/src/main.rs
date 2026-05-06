@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let limit = 1_000_000;
     
     let mut best_n = 0u64;
@@ -26,6 +28,9 @@ fn main() {
     // Verify it's less than 3/7
     let diff = 3.0 / 7.0 - (best_n as f64 / best_d as f64);
     println!("Distance from 3/7: {:.15}", diff);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn gcd(mut a: u64, mut b: u64) -> u64 {

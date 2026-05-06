@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let limit = 10_000_000;
     
     // Generate primes up to sqrt(limit) * 2 to be safe
@@ -36,6 +38,9 @@ fn main() {
     println!("n = {}", best_n);
     println!("phi(n) = {}", best_phi);
     println!("n/phi(n) = {:.10}", min_ratio);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn sieve_of_eratosthenes(limit: usize) -> Vec<usize> {

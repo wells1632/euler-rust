@@ -1,7 +1,9 @@
+use std::time::Instant;
 use num_bigint::BigUint;
 use num_traits::{Zero, One};
 
 fn main() {
+    let start = Instant::now();
     let limit = 1000;
     let mut max_x = BigUint::zero();
     let mut max_d = 0;
@@ -21,6 +23,9 @@ fn main() {
     
     println!("D with largest minimal x: {}", max_d);
     println!("x = {}", max_x);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn is_perfect_square(n: u64) -> bool {

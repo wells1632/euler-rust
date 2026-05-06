@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::env;
 use std::fs;
 use std::process;
@@ -5,6 +6,7 @@ use std::cmp::Ordering;
 use std::collections::BinaryHeap;
 
 fn main() {
+    let start = Instant::now();
     let args: Vec<String> = env::args().collect();
     
     if args.len() != 2 {
@@ -25,6 +27,9 @@ fn main() {
     let min_sum = find_min_path_sum(&matrix);
     
     println!("Minimum path sum: {}", min_sum);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn read_matrix(filename: &str) -> Result<Vec<Vec<i32>>, Box<dyn std::error::Error>> {

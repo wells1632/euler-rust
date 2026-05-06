@@ -1,7 +1,9 @@
+use std::time::Instant;
 use num_bigint::BigUint;
 use num_traits::{Zero, One};
 
 fn main() {
+    let start = Instant::now();
     // Generate first 100 coefficients of continued fraction for e
     let coefficients = generate_e_coefficients(100);
     
@@ -13,6 +15,9 @@ fn main() {
     
     println!("100th convergent numerator: {}", numerator);
     println!("Sum of digits: {}", digit_sum);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn generate_e_coefficients(n: usize) -> Vec<u64> {

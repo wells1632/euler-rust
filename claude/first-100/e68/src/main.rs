@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let mut max_solution = String::new();
     let mut max_value = 0u64;
     
@@ -34,6 +36,9 @@ fn main() {
     });
     
     println!("Maximum 16-digit string: {}", max_solution);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn generate_partitions<F>(nums: &mut [u8], start: usize, outer_size: usize, callback: &mut F)

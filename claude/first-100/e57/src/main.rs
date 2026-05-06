@@ -1,3 +1,4 @@
+use std::time::Instant;
 use num_bigint::BigUint;
 
 fn count_digits(n: &BigUint) -> usize {
@@ -5,6 +6,7 @@ fn count_digits(n: &BigUint) -> usize {
 }
 
 fn main() {
+    let start = Instant::now();
     // Initial values for sqrt(2) continued fraction
     // p_0 = 1, p_1 = 3
     // q_0 = 1, q_1 = 2
@@ -21,7 +23,7 @@ fn main() {
     }
     
     // Generate expansions 2 through 1000
-    for i in 2..=1000 {
+    for _i in 2..=1000 {
         // Calculate next convergent using recurrence relation:
         // p_n = 2*p_{n-1} + p_{n-2}
         // q_n = 2*q_{n-1} + q_{n-2}
@@ -41,4 +43,7 @@ fn main() {
     }
     
     println!("Number of fractions (out of first 1000) where numerator has more digits: {}", count);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

@@ -1,9 +1,11 @@
+use std::time::Instant;
 use std::collections::{HashMap, HashSet, VecDeque};
 use std::env;
 use std::fs;
 use std::process;
 
 fn main() {
+    let start = Instant::now();
     let args: Vec<String> = env::args().collect();
     
     if args.len() != 2 {
@@ -24,6 +26,9 @@ fn main() {
     let passcode = find_shortest_passcode(&attempts);
     
     println!("Shortest possible passcode: {}", passcode);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn read_attempts(filename: &str) -> Result<Vec<String>, Box<dyn std::error::Error>> {

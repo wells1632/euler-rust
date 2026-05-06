@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let limit = 1_500_000;
     
     // Count solutions for each perimeter
@@ -32,6 +34,9 @@ fn main() {
     let count = solutions.iter().filter(|&&s| s == 1).count();
     
     println!("Number of values with exactly one solution: {}", count);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn gcd(mut a: usize, mut b: usize) -> usize {

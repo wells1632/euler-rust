@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn is_prime(n: u64) -> bool {
     if n < 2 {
         return false;
@@ -19,6 +20,7 @@ fn is_prime(n: u64) -> bool {
 }
 
 fn main() {
+    let start = Instant::now();
     let mut side_length = 1;
     let mut diagonal_count = 1; // Start with center (1)
     let mut prime_count = 0;    // 1 is not prime
@@ -65,4 +67,7 @@ fn main() {
             break;
         }
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

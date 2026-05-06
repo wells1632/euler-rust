@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let limit = 100000; // Start with a reasonable upper bound
     let target = 5000;
     
@@ -31,6 +33,9 @@ fn main() {
         if dp[i] > target || exceeded[i] {
             println!("First value with more than {} prime partitions: {}", target, i);
             println!("Number of ways: {}", if exceeded[i] { "over 5000".to_string() } else { dp[i].to_string() });
+
+	    let duration = start.elapsed();
+	    println!("Time elapsed: {:?}", duration);
             return;
         }
     }

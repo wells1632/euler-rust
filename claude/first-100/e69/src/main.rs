@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let limit = 1_000_000;
     
     // Calculate totient values for all n up to limit
@@ -22,6 +24,9 @@ fn main() {
     // Show prime factorization
     print!("Prime factorization: ");
     print_factorization(max_n);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn compute_totients(limit: usize) -> Vec<usize> {

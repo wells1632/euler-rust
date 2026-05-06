@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn sieve_of_eratosthenes(limit: usize) -> Vec<bool> {
     let mut is_prime = vec![true; limit + 1];
     is_prime[0] = false;
@@ -16,7 +17,7 @@ fn sieve_of_eratosthenes(limit: usize) -> Vec<bool> {
 fn count_family_size(prime: u32, is_prime: &[bool]) -> usize {
     let s = prime.to_string();
     let digits: Vec<char> = s.chars().collect();
-    let n = digits.len();
+    let _n = digits.len();
     let mut max_family = 0;
     
     // Try replacing each unique digit that appears in the number
@@ -59,6 +60,7 @@ fn count_family_size(prime: u32, is_prime: &[bool]) -> usize {
 }
 
 fn main() {
+    let start = Instant::now();
     let limit = 1_000_000;
     let is_prime = sieve_of_eratosthenes(limit);
     
@@ -72,4 +74,7 @@ fn main() {
             break;
         }
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

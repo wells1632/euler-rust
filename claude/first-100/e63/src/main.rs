@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let mut total = 0;
     
     for n in 1..=100 {
@@ -13,6 +15,9 @@ fn main() {
     }
     
     println!("\nTotal: {} numbers", total);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn count_n_digit_nth_powers(n: u32) -> u32 {

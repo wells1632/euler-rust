@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let limit = 1_000_000;
     
     // Compute Euler's totient function for all d
@@ -8,6 +10,9 @@ fn main() {
     let total: u64 = (2..=limit).map(|d| phi[d] as u64).sum();
     
     println!("Number of reduced proper fractions for d <= {}: {}", limit, total);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn compute_totients(limit: usize) -> Vec<usize> {

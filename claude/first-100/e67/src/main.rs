@@ -1,8 +1,10 @@
+use std::time::Instant;
 use std::env;
 use std::fs;
 use std::process;
 
 fn main() {
+    let start = Instant::now();
     let args: Vec<String> = env::args().collect();
     
     if args.len() != 2 {
@@ -23,6 +25,9 @@ fn main() {
     let max_total = find_max_path(&triangle);
     
     println!("Maximum total: {}", max_total);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn read_triangle(filename: &str) -> Result<Vec<Vec<i32>>, Box<dyn std::error::Error>> {

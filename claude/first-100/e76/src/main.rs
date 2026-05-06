@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let n = 100;
     
     let total_partitions = count_partitions(n);
@@ -7,6 +9,9 @@ fn main() {
     let result = total_partitions - 1;
     
     println!("Number of ways to write {} as a sum of at least two positive integers: {}", n, result);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn count_partitions(n: usize) -> u64 {

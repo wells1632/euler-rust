@@ -1,7 +1,9 @@
+use std::time::Instant;
 use num_bigint::BigInt;
 use num_traits::{ToPrimitive, FromPrimitive};
 
 fn main() {
+    let start = Instant::now();
     let limit = 100;
     let digits = 100;
     
@@ -25,6 +27,9 @@ fn main() {
     }
     
     println!("\nTotal of all digital sums: {}", total_sum);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn is_perfect_square(n: u64) -> bool {
