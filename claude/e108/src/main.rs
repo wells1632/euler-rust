@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     println!("Finding least n where 1/x + 1/y = 1/n has > 1000 distinct solutions\n");
     
     let target = 1000;
@@ -29,6 +31,9 @@ fn main() {
                      n, unordered_solutions, ordered_solutions);
         }
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn count_divisors_of_square(n: u64) -> u64 {

@@ -1,8 +1,10 @@
+use std::time::Instant;
 use std::env;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 fn main() {
+    let start = Instant::now();
     let args: Vec<String> = env::args().collect();
     
     if args.len() < 2 {
@@ -26,6 +28,9 @@ fn main() {
             std::process::exit(1);
         }
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn count_triangles_containing_origin(filename: &str) -> Result<usize, Box<dyn std::error::Error>> {

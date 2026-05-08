@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     // The probability of drawing 2 blue discs is: b(b-1) / (n(n-1)) = 1/2
     // This simplifies to: 2b(b-1) = n(n-1)
     // Which can be transformed into the Pell equation: x² - 2y² = -1
@@ -35,4 +37,7 @@ fn main() {
         x = new_x;
         y = new_y;
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

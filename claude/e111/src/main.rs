@@ -1,7 +1,9 @@
+use std::time::Instant;
 use std::collections::HashSet;
 use std::env;
 
 fn main() {
+    let start = Instant::now();
     let args: Vec<String> = env::args().collect();
     
     let length = if args.len() > 1 {
@@ -31,6 +33,9 @@ fn main() {
     println!("\n{}", "=".repeat(70));
     println!("ANSWER for length {}: {}", length, result);
     println!("{}", "=".repeat(70));
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn pe111(length: usize) -> u128 {

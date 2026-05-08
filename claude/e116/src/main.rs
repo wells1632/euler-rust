@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     println!("Three-Color Tile Arrangement Problem\n");
     
     let row_length = 50;
@@ -32,6 +34,9 @@ fn main() {
     println!("\n{}", "=".repeat(70));
     println!("ANSWER: {}", total);
     println!("{}", "=".repeat(70));
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn count_arrangements(tile_len: usize, row_len: usize) -> u64 {

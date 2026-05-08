@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::collections::{HashMap, HashSet};
 use std::env;
 use std::fs;
@@ -107,6 +108,7 @@ fn permute_digits(
 }
 
 fn main() {
+    let start = Instant::now();
     let args: Vec<String> = env::args().collect();
     
     if args.len() < 2 {
@@ -128,4 +130,7 @@ fn main() {
     }
     
     println!("\nLargest square number: {}", overall_max);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

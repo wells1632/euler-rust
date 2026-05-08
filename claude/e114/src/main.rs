@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     println!("Counting ways to fill rows with red blocks (min length 3)\n");
     
     // Show progression for small values
@@ -25,6 +27,9 @@ fn main() {
     println!("{}", "=".repeat(70));
     println!("ANSWER: {} ways to fill a row of length 50", result);
     println!("{}", "=".repeat(70));
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn count_ways(length: usize) -> u64 {

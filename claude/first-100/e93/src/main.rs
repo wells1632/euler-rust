@@ -1,6 +1,8 @@
+use std::time::Instant;
 use std::collections::HashSet;
 
 fn main() {
+    let start = Instant::now();
     let mut best_digits = [0, 0, 0, 0];
     let mut best_n = 0;
     
@@ -31,6 +33,9 @@ fn main() {
     println!("Consecutive integers: 1 to {}", best_n);
     println!("Answer: {}{}{}{}", best_digits[0], best_digits[1], best_digits[2], best_digits[3]);
     println!("{}", "=".repeat(70));
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn find_reachable_numbers(digits: &[i32; 4]) -> HashSet<i32> {

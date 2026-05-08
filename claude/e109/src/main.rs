@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::collections::HashSet;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -26,6 +27,7 @@ impl Dart {
 }
 
 fn main() {
+    let start = Instant::now();
     println!("Dart Checkout Calculator\n");
     
     // Test with score 6
@@ -44,6 +46,9 @@ fn main() {
     println!("\n{}", "=".repeat(70));
     println!("ANSWER: {} distinct checkouts for scores < 100", total);
     println!("{}", "=".repeat(70));
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn count_checkouts(target: u32) -> usize {

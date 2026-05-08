@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     println!("Mixed-Color Tile Arrangement\n");
     
     let row_length = 50;
@@ -23,6 +25,9 @@ fn main() {
     println!("{}", "=".repeat(70));
     println!("ANSWER: {} total arrangements", result);
     println!("{}", "=".repeat(70));
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn count_mixed_arrangements(row_len: usize) -> u64 {

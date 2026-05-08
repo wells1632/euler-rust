@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     println!("Diophantine Reciprocal: 1/x + 1/y = 1/n\n");
     
     // Verify known example
@@ -72,6 +74,9 @@ fn main() {
     println!("\n{}", "=".repeat(70));
     println!("ANSWER: n = {}", best_n);
     println!("{}", "=".repeat(70));
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn count_divisors_of_square(n: u64) -> u64 {

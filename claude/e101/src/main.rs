@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn evaluate_polynomial(n: i64) -> i64 {
     // u = 1 - n + n² - n³ + n^4 - n^5 + n^6 - n^7 + n^8 - n^9 + n^10
     let mut result = 1i64;
@@ -52,6 +53,7 @@ fn interpolate(terms: &[i64], n: usize) -> i64 {
 }
 
 fn main() {
+    let start = Instant::now();
     // Generate the first 11 terms of the sequence
     let mut sequence = Vec::new();
     for n in 1..=11 {
@@ -83,4 +85,7 @@ fn main() {
     }
     
     println!("Sum of FITs for BOPs: {}", fit_sum);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

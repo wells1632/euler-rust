@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let target_proportion = 0.99;
     
     println!("Finding the least number where bouncy proportion = {}%\n", target_proportion * 100.0);
@@ -34,6 +36,9 @@ fn main() {
                      n, bouncy_count, proportion);
         }
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn is_bouncy_fast(mut n: u64) -> bool {

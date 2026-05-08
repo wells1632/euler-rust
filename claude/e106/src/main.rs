@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     println!("Special Sum Set - Minimal Equality Tests Required\n");
     println!("Counting pairs where ordering can't be determined from sorted property...\n");
     
@@ -13,6 +15,9 @@ fn main() {
     println!("\n{}", "=".repeat(70));
     println!("ANSWER: For n=12, {} subset pairs need to be tested", result);
     println!("{}", "=".repeat(70));
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn count_tests_needed(n: usize) -> u64 {

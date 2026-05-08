@@ -1,6 +1,8 @@
+use std::time::Instant;
 use std::collections::HashMap;
 
 fn main() {
+    let start = Instant::now();
     println!("Finding least n where F(50, n) > 1,000,000\n");
     
     let m = 50;
@@ -25,6 +27,9 @@ fn main() {
             break;
         }
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn count_ways_cached(m: usize, n: usize, cache: &mut HashMap<(usize, usize), u64>) -> u64 {

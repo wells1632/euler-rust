@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let limit = 1_000_000_000u64;
     
     println!("Finding almost equilateral triangles with:");
@@ -44,6 +46,9 @@ fn main() {
     println!("Total triangles found: {}", count);
     println!("Sum of all perimeters: {}", total_sum);
     println!("{}", "=".repeat(70));
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn is_integer_area(a: u64, b: u64, c: u64) -> bool {

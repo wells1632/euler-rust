@@ -1,7 +1,9 @@
+use std::time::Instant;
 use std::env;
 use std::fs;
 
 fn main() {
+    let start = Instant::now();
     let args: Vec<String> = env::args().collect();
     
     if args.len() < 2 {
@@ -42,4 +44,7 @@ fn main() {
     println!("===========================================");
     println!("Value: {}^{}", max_base, max_exp);
     println!("Log value: {:.6}", max_value);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

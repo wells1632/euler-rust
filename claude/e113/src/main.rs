@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     println!("Counting non-bouncy numbers below 10^100\n");
     
     let max_digits = 100;
@@ -38,6 +40,9 @@ fn main() {
     println!("\n{}", "=".repeat(70));
     println!("ANSWER: {} non-bouncy numbers below 10^100", total);
     println!("{}", "=".repeat(70));
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn binomial(n: u128, k: u128) -> u128 {

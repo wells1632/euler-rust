@@ -1,8 +1,10 @@
+use std::time::Instant;
 use std::env;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 fn main() {
+    let start = Instant::now();
     let args: Vec<String> = env::args().collect();
     
     if args.len() < 2 {
@@ -24,6 +26,9 @@ fn main() {
             std::process::exit(1);
         }
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn process_network(filename: &str) -> Result<u32, Box<dyn std::error::Error>> {

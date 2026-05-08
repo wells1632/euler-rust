@@ -1,6 +1,8 @@
+use std::time::Instant;
 use std::collections::HashSet;
 
 fn main() {
+    let start = Instant::now();
     println!("Finding optimum special sum set with 7 elements...\n");
     
     // Based on known patterns, search around optimal ranges
@@ -47,6 +49,9 @@ fn main() {
         .join("");
     println!("Concatenated: {}", concatenated);
     println!("{}", "=".repeat(70));
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn is_special_sum_set(set: &[u32]) -> bool {
