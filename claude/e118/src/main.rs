@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn is_prime(n: u32) -> bool {
     if n < 2 {
         return false;
@@ -36,6 +37,7 @@ fn generate_partitions(digits: &[u8], start: usize, current: &mut Vec<u32>, resu
 }
 
 fn main() {
+    let start = Instant::now();
     use std::collections::HashSet;
     
     let mut digits = [1u8, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -59,6 +61,9 @@ fn main() {
     
     println!("Total permutations checked: {}", permutation_count);
     println!("Distinct sets containing only primes: {}", all_valid_sets.len());
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn permute<F>(arr: &mut [u8], start: usize, callback: &mut F)
