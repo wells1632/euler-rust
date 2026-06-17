@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::collections::HashSet;
 
 // Represent capacitance as a fraction (numerator, denominator) in reduced form
@@ -50,6 +51,7 @@ fn exact_values(k: usize, memo: &mut Vec<Option<HashSet<(u64, u64)>>>) -> HashSe
 }
 
 fn main() {
+    let start = Instant::now();
     let max_n = 18;
     let mut memo: Vec<Option<HashSet<(u64, u64)>>> = vec![None; max_n + 1];
 
@@ -60,4 +62,7 @@ fn main() {
         all_values.extend(vals);
         println!("D({}) = {}", k, all_values.len());
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
