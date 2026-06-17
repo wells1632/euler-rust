@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn mod_inverse(a: u64, m: u64) -> Option<u64> {
     let (mut old_r, mut r) = (a as i64, m as i64);
     let (mut old_s, mut s) = (1i64, 0i64);
@@ -44,6 +45,7 @@ fn num_digits(n: u64) -> u32 {
 }
 
 fn main() {
+    let start = Instant::now();
     // Sieve beyond 1,000,000 to ensure we have the successor of every prime <= 1,000,000
     let primes = sieve(1_100_000);
     let mut total: u128 = 0;
@@ -71,4 +73,7 @@ fn main() {
     }
 
     println!("Sum = {}", total);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

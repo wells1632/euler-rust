@@ -1,7 +1,9 @@
+use std::time::Instant;
 use num_bigint::BigInt;
 use num_traits::Zero;
 
 fn main() {
+    let start = Instant::now();
     let mut seeds: Vec<(BigInt, BigInt)> = Vec::new();
     for u in 1i64..=100 {
         for v in 0i64..=100 {
@@ -68,4 +70,7 @@ fn main() {
         sum += n;
     }
     println!("\nSum of first 30 golden nuggets: {}", sum);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     const MAX: usize = 20_000;
     let mut ways = vec![0u32; MAX];
 
@@ -27,4 +29,7 @@ fn main() {
             break;
         }
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

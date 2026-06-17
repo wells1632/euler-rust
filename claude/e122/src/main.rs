@@ -1,6 +1,8 @@
+use std::time::Instant;
 use std::collections::{HashSet, VecDeque};
 
 fn main() {
+    let start = Instant::now();
     let mut total_sum = 0;
     
     for k in 1..=200 {
@@ -13,6 +15,9 @@ fn main() {
     }
     
     println!("Sum of m(k) for 1<=k<=200: {}", total_sum);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn minimum_multiplications(target: usize) -> usize {

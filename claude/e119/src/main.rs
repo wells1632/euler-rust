@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn digit_sum(mut n: u64) -> u64 {
     let mut sum = 0;
     while n > 0 {
@@ -18,6 +19,7 @@ fn count_digits(mut n: u64) -> u32 {
 }
 
 fn main() {
+    let start = Instant::now();
     let mut sequence = Vec::new();
     
     // For each power p, check all possible digit sums
@@ -63,4 +65,7 @@ fn main() {
     } else {
         println!("\nOnly found {} numbers", sequence.len());
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

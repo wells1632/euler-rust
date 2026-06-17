@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn sieve(limit: usize) -> Vec<bool> {
     let mut is_prime = vec![true; limit];
     is_prime[0] = false;
@@ -68,6 +69,7 @@ fn has_property(p: i128) -> bool {
 }
 
 fn main() {
+    let start = Instant::now();
     let limit = 1_000_000usize;
     let is_prime = sieve(limit);
 
@@ -97,4 +99,7 @@ fn main() {
     }
 
     println!("\nFinal count: {}", count);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

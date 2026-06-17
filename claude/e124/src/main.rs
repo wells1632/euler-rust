@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let limit = 100000;
     
     // Calculate rad(n) for all n and store as (n, rad(n))
@@ -42,6 +44,9 @@ fn main() {
     for i in 0..10 {
         println!("E({}) = n={}, rad(n)={}", i+1, small_pairs[i].0, small_pairs[i].1);
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn radical(n: u32) -> u32 {

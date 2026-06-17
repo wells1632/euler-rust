@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let epsilon = 1e-9f64;
 
     let mut pos = (1.4f64, -9.6f64);
@@ -69,4 +71,7 @@ fn main() {
             break;
         }
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

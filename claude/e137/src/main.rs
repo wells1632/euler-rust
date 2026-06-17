@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     // Golden nuggets are products of consecutive even-indexed Fibonacci pairs:
     // GN(k) = F(2k) * F(2k+1)
     // We need the 15th, so we need F(30) * F(31)
@@ -20,4 +22,7 @@ fn main() {
         2 * k + 1, fibs[2 * k + 1]
     );
     println!("The 15th golden nugget is: {}", golden_nugget);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

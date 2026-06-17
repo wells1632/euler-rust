@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let target = 10_u64.pow(10);
     let mut n = 1;
     
@@ -20,6 +22,9 @@ fn main() {
         
         n += 1;
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn compute_remainder(prime: u64, n: u64) -> u64 {

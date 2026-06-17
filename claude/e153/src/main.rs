@@ -1,8 +1,10 @@
+use std::time::Instant;
 fn gcd(a: usize, b: usize) -> usize {
     if b == 0 { a } else { gcd(b, a % b) }
 }
 
 fn main() {
+    let start = Instant::now();
     const LIMIT: usize = 100_000_000;
 
     let mut answer = vec![0i64; LIMIT + 1];
@@ -42,4 +44,7 @@ fn main() {
 
     let total: i64 = answer[1..=LIMIT].iter().sum();
     println!("{}", total);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

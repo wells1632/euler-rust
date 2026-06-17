@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let turns = 15;
     let win_probability = calculate_winning_probability(turns);
     
@@ -8,6 +10,9 @@ fn main() {
     let max_prize = (1.0 / win_probability).floor() as u64;
     
     println!("Maximum prize fund: ${}", max_prize);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn calculate_winning_probability(turns: usize) -> f64 {

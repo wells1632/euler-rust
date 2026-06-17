@@ -1,7 +1,9 @@
+use std::time::Instant;
 use num_bigint::BigInt;
 use num_traits::{Zero, One};
 
 fn main() {
+    let start = Instant::now();
     let mut results: Vec<(BigInt, BigInt, BigInt)> = Vec::new();
 
     let mut u = BigInt::from(2);
@@ -106,4 +108,7 @@ fn main() {
         sum += l;
     }
     println!("\nSum of L: {}", sum);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

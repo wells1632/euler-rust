@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let n: usize = 1000;
     let total = n * (n + 1) / 2;
 
@@ -37,4 +39,7 @@ fn main() {
     }
 
     println!("Minimum sub-triangle sum: {}", min_sum);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

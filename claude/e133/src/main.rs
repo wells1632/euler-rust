@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn mod_pow(mut base: u64, mut exp: u64, modulus: u64) -> u64 {
     if modulus == 1 { return 0; }
     let mut result = 1u64;
@@ -75,6 +76,7 @@ fn can_divide_repunit_power_of_10(p: u64) -> bool {
 }
 
 fn main() {
+    let start = Instant::now();
     let limit = 100_000u64;
     let mut never_sum = 0u64;
     let mut never_count = 0u64;
@@ -98,4 +100,7 @@ fn main() {
     println!("\nPrimes below {} that NEVER divide R(10^n):", limit);
     println!("Count: {}", never_count);
     println!("Sum: {}", never_sum);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

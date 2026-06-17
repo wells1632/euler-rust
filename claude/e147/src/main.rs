@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn count_diagonal(m: usize, n: usize) -> u64 {
     let m2 = 2 * m as i64;
     let n2 = 2 * n as i64;
@@ -31,6 +32,7 @@ fn count_total(m: usize, n: usize) -> u64 {
 }
 
 fn main() {
+    let start = Instant::now();
     println!("Verifying:");
     for (m, n, exp) in [(1usize,1usize,1u64),(2,1,4),(3,1,8),(1,2,4),(2,2,18),(3,2,37)] {
         let r = count_total(m, n);
@@ -45,4 +47,7 @@ fn main() {
         }
     }
     println!("\nTotal for 47x43 and all smaller grids: {}", total);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

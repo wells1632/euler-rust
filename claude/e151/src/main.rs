@@ -1,6 +1,8 @@
+use std::time::Instant;
 use std::collections::HashMap;
 
 fn main() {
+    let start = Instant::now();
     // State: (a2, a3, a4, a5) counts of sheets in envelope
     // After first batch: (1,1,1,1)
     // We process batches 2 through 16, track envelope state BEFORE each batch
@@ -71,4 +73,7 @@ fn main() {
     }
 
     println!("{:.6}", expected_single);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

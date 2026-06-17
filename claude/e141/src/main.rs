@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::collections::HashSet;
 
 fn gcd(a: u64, b: u64) -> u64 {
@@ -108,6 +109,7 @@ fn base_solutions_pell(d: u128, n_rhs: u128, x1: u128, y1: u128) -> Vec<(i128, i
 }
 
 fn main() {
+    let start = Instant::now();
     let limit: u64 = 1_000_000_000_000u64;
     let mut results: HashSet<u64> = HashSet::new();
 
@@ -213,4 +215,7 @@ fn main() {
     let sum: u64 = sorted.iter().sum();
     println!("\nSum: {}", sum);
     println!("Count: {}", sorted.len());
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

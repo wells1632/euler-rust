@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn mod_pow(mut base: u64, mut exp: u64, modulus: u64) -> u64 {
     if modulus == 1 { return 0; }
     let mut result = 1u64;
@@ -37,6 +38,7 @@ fn divides_repunit(p: u64, k: u64) -> bool {
 }
 
 fn main() {
+    let start = Instant::now();
     let k = 1_000_000_000u64;
     let target = 40;
     let mut found = Vec::new();
@@ -57,4 +59,7 @@ fn main() {
     println!("\nFirst {} prime factors of R(10^9):", target);
     println!("{:?}", found);
     println!("Sum: {}", sum);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

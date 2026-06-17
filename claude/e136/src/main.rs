@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let limit = 50_000_000usize;
     let mut counts = vec![0u32; limit];
 
@@ -30,4 +32,7 @@ fn main() {
 
     let result = counts.iter().filter(|&&c| c == 1).count();
     println!("Count of n < 50,000,000 with exactly 1 solution: {}", result);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

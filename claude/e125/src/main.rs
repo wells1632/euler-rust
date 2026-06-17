@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let limit = 100_000_000u64;
     let mut palindromic_sums = std::collections::HashSet::new();
     
@@ -35,6 +37,9 @@ fn main() {
     for (i, &num) in examples.iter().take(10).enumerate() {
         println!("{}. {}", i + 1, num);
     }
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn is_palindrome(n: u64) -> bool {

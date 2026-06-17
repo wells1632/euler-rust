@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::collections::HashSet;
 
 fn gcd(a: u64, b: u64) -> u64 {
@@ -5,6 +6,7 @@ fn gcd(a: u64, b: u64) -> u64 {
 }
 
 fn main() {
+    let start = Instant::now();
     let limit: u64 = 100_000_000;
     let mut count = 0u64;
 
@@ -52,4 +54,7 @@ fn main() {
     }
 
     println!("Count of valid Pythagorean triangles: {}", count);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

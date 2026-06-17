@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     let mut total_sum: u64 = 0;
     
     for a in 3..=1000 {
@@ -12,6 +14,9 @@ fn main() {
     }
     
     println!("Sum of all maximum remainders: {}", total_sum);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn find_max_remainder(a: u64) -> u64 {

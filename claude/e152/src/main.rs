@@ -1,3 +1,4 @@
+use std::time::Instant;
 use std::collections::HashSet;
 use std::collections::HashMap;
 
@@ -119,6 +120,7 @@ fn find_valid_multiples(p: usize, allowed: &HashSet<usize>) -> HashSet<usize> {
 }
 
 fn main() {
+    let start = Instant::now();
     let max_val = 80;
     let primes = primes_up_to(max_val);
 
@@ -263,4 +265,7 @@ fn main() {
     }
 
     println!("\nTotal number of ways: {}", total_count);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn kadane(seq: &[i64]) -> i64 {
     let mut best = seq[0];
     let mut current = seq[0];
@@ -9,6 +10,7 @@ fn kadane(seq: &[i64]) -> i64 {
 }
 
 fn main() {
+    let start = Instant::now();
     const N: usize = 2000;
     const MOD: i64 = 1_000_000;
 
@@ -64,4 +66,7 @@ fn main() {
     }
 
     println!("{}", max_sum);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

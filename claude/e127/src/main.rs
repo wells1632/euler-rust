@@ -1,8 +1,10 @@
+use std::time::Instant;
 fn gcd(a: u64, b: u64) -> u64 {
     if b == 0 { a } else { gcd(b, a % b) }
 }
 
 fn main() {
+    let start = Instant::now();
     let limit = 120_000u64;
     let mut sum = 0u64;
     let mut hit_count = 0u64;
@@ -42,4 +44,7 @@ fn main() {
     println!("---");
     println!("Complete! abc-hits for c < {}: {}", limit, hit_count);
     println!("Sum of c: {}", sum);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

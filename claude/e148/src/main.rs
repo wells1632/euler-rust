@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn count_not_divisible(n: u64, p: u64) -> u64 {
     if n == 0 {
         return 0;
@@ -85,9 +86,13 @@ fn count_not_divisible(n: u64, p: u64) -> u64 {
 }
 
 fn main() {
+    let start = Instant::now();
     let p: u64 = 7;
 
     println!("First 7 rows:           {}", count_not_divisible(7, p));
     println!("First 100 rows:         {}", count_not_divisible(100, p));
     println!("First 1_000_000_000 rows: {}", count_not_divisible(1_000_000_000, p));
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
