@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn count_solutions(n: u32) -> u64 {
     let pow10: u64 = 10u64.pow(n);
     let mut count = 0u64;
@@ -24,6 +25,7 @@ fn count_solutions(n: u32) -> u64 {
 }
 
 fn main() {
+    let start = Instant::now();
     let mut total = 0u64;
     for n in 1..=9 {
         let c = count_solutions(n);
@@ -31,4 +33,7 @@ fn main() {
         total += c;
     }
     println!("Total (1<=n<=9): {}", total);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

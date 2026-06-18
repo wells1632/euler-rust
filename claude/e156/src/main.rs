@@ -1,3 +1,4 @@
+use std::time::Instant;
 fn count_digit_occurrences(n: i64, d: u8) -> i64 {
     if n < 0 { return 0; }
     let d = d as i64;
@@ -52,6 +53,7 @@ fn find_fixed_points(d: u8, lo: i64, hi: i64, solutions: &mut Vec<i64>) {
 }
 
 fn main() {
+    let start = Instant::now();
     // Verify test cases
     println!("f(0,1)={}", count_digit_occurrences(0, 1));
     println!("f(1,1)={}", count_digit_occurrences(1, 1));
@@ -114,4 +116,7 @@ fn main() {
     }
 
     println!("\nAnswer: sum of s(d) for d=1..=9 = {}", total_sum);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }

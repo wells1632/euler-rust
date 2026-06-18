@@ -1,4 +1,6 @@
+use std::time::Instant;
 fn main() {
+    let start = Instant::now();
     // C(26, n) * (2^n - n - 1)
     // Eulerian number A(n,1) = 2^n - n - 1
 
@@ -17,6 +19,9 @@ fn main() {
     }
 
     println!("\nMaximum p(n) = {} at n = {}", max_p, max_n);
+
+    let duration = start.elapsed();
+    println!("Time elapsed: {:?}", duration);
 }
 
 fn binomial(n: usize, k: usize) -> u64 {
